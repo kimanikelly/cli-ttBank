@@ -1,7 +1,7 @@
 package main
 
-import "github.com/kimanikelly/ttBank/home"
+import "fmt"
 
 func main() {
-	home.TestHome()
+	fmt.Println("Testing")
 }
