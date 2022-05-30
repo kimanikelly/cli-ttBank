@@ -2,7 +2,10 @@ module github.com/kimanikelly/cli-ttBank
 
 go 1.18
 
-require github.com/ethereum/go-ethereum v1.10.18
+require (
+	github.com/ethereum/go-ethereum v1.10.18
+	github.com/joho/godotenv v1.4.0
+)
 
 require (
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect

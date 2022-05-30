@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/kimanikelly/cli-ttBank/client"
+)
 
 func main() {
-	fmt.Println("Testing")
+	fmt.Println(client.ClientConnection())
 }

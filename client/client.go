@@ -1,8 +1,13 @@
 package client
 
-import "github.com/ethereum/go-ethereum/ethclient"
+// "log"
 
-func ProviderConnection() *ethclient.Client {
+func ClientConnection() string {
 
-	// client,err := ethclient.Dial()
+	return LoadNetwork()
+	// client, err := ethclient.Dial()
+
+	// if err != nil {
+	// 	log.Fatalf("Failed to connect to the Ethereum client %v", err)
+	// }
 }
