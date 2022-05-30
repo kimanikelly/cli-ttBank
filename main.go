@@ -1,9 +1,14 @@
 package main
 
 import (
-	"github.com/kimanikelly/cli-ttBank/utils"
+	"fmt"
+
+	"github.com/kimanikelly/cli-ttBank/signer"
 )
 
 func main() {
-	utils.ChainID()
+
+	address, privateKey := signer.Wallet()
+
+	fmt.Println(address, privateKey)
 }
