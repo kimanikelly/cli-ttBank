@@ -28,6 +28,8 @@ func Wallet() (common.Address, *ecdsa.PrivateKey) {
 
 	publicKey := privateKey.Public()
 
+	log.Println(publicKey)
+
 	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
 
 	if !ok {
