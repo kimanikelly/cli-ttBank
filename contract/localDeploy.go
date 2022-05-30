@@ -1,16 +1,56 @@
 package contract
 
-// import (
-// 	"context"
-// "github.com/kimanikelly/cli-ttBank/signer"
-// "github.com/ethereum/go-ethereum/accounts/abi/bind"
-// )
+import (
+	"io"
+	"log"
+	"math/big"
 
-// func DeployContracts() {
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	"github.com/kimanikelly/cli-ttBank/signer"
+	"github.com/kimanikelly/cli-ttBank/utils"
+)
 
-// 	address,privateKey := signer.Wallet()
-// 	chainId,err := contract.ProviderConnection().ChainID(context.Background())
+func DeployContracts() {
 
-// 	// // Binds the connected signer to the transaction options
-// 	// auth, authErr := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
-// }
+	address, privateKey := signer.Wallet()
+
+	// Returns the nonce
+	nonce := utils.Nonce(address)
+
+	// Returns the gasPrice
+	gasPrice := utils.GasPrice()
+
+	// Returns the chainId
+	chainId := utils.ChainID()
+
+	// Binds the connected signer to the transaction options
+	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
+
+	// If err does not equal nil (zero value) throw an error
+	if err != nil {
+		log.Fatalf("Failed to build the NewKeyedTransactorWithChainID %v", err)
+	}
+
+	// Sets the nonce to send with a transaction
+	auth.Nonce = big.NewInt(int64(nonce))
+
+	// Sets the amount of test ETH to send with a transaction
+	auth.Value = big.NewInt(0)
+
+	// Sets the gasLimit for a transaction
+	auth.GasLimit = uint64(300000)
+
+	// Sets the gas price for a transaction
+	auth.GasPrice = gasPrice
+
+	tokenResp, _ := FetchContractData()
+
+	tokenBody, err := io.ReadAll(tokenResp.Body)
+
+	if err != nil {
+		log.Fatalf("Failed to read the response body for the ./tokenContract endpoint %v", err)
+	}
+
+	log.Println(string(tokenBody))
+
+}

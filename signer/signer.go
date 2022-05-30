@@ -30,7 +30,7 @@ func Wallet() (common.Address, *ecdsa.PrivateKey) {
 	if os.Getenv("NETWORK") == "localhost" {
 
 		// Returns the parsed ganache private key
-		privateKey, err = crypto.HexToECDSA(utils.PrivateKeys()[0])
+		privateKey, err = crypto.HexToECDSA(utils.PrivateKeys())
 
 		// If err does not equal nil(zero value) throw an error
 		if err != nil {

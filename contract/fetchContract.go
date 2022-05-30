@@ -16,7 +16,7 @@ func FetchContractData() (*http.Response, *http.Response) {
 	}
 
 	// GET request to access the ABI, Bytecode, and addresses of TTBank.sol
-	ttBankRes, ttBankErr := http.Get("https://kimanikelly-contractapi.herokuapp.com/tokenContract/ttBank")
+	ttBankResp, ttBankErr := http.Get("https://kimanikelly-contractapi.herokuapp.com/tokenContract/ttBank")
 
 	// If ttBankErr does not equal nil(zero value) throw an err
 	if ttBankErr != nil {
@@ -24,5 +24,5 @@ func FetchContractData() (*http.Response, *http.Response) {
 	}
 
 	// Returns the response made to the /tokenContract and /ttBank endpoints
-	return tokenResp, ttBankRes
+	return tokenResp, ttBankResp
 }
