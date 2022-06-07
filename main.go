@@ -1,12 +1,15 @@
 package main
 
 import (
-	// "github.com/kimanikelly/cli-ttBank/contract"
 	"fmt"
+
+	"github.com/kimanikelly/cli-ttBank/contract"
 )
 
 func main() {
-	hello := "hello world"
 
-	fmt.Println(hello)
+	ttBank := contract.ContractInstance()
+
+	fmt.Println(ttBank)
+
 }

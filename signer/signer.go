@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/kimanikelly/cli-ttBank/utils"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -30,7 +29,7 @@ func Wallet() (common.Address, *ecdsa.PrivateKey) {
 	if os.Getenv("NETWORK") == "localhost" {
 
 		// Returns the parsed ganache private key
-		privateKey, err = crypto.HexToECDSA(utils.PrivateKeys())
+		privateKey, err = crypto.HexToECDSA(os.Getenv("HARDHAT_KEY"))
 
 		// If err does not equal nil(zero value) throw an error
 		if err != nil {
