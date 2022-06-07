@@ -1,56 +1,85 @@
 package contract
 
-import (
-	"io"
-	"log"
-	"math/big"
+// import (
+// 	"encoding/json"
+// 	"fmt"
+// 	"io"
+// 	"log"
+// 	"math/big"
 
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/kimanikelly/cli-ttBank/signer"
-	"github.com/kimanikelly/cli-ttBank/utils"
-)
+// 	"github.com/ethereum/go-ethereum/accounts/abi"
+// 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+// 	"github.com/kimanikelly/cli-ttBank/client"
+// 	"github.com/kimanikelly/cli-ttBank/signer"
+// 	"github.com/kimanikelly/cli-ttBank/utils"
+// )
 
-func DeployContracts() {
+// type AddressList struct {
+// 	Rinkeby string
+// }
 
-	address, privateKey := signer.Wallet()
+// type ContractResponseData struct {
+// 	Addresses AddressList
+// 	Abi       abi.ABI
+// 	Bytecode  string
+// }
 
-	// Returns the nonce
-	nonce := utils.Nonce(address)
+// var ContractData ContractResponseData
 
-	// Returns the gasPrice
-	gasPrice := utils.GasPrice()
+// func DeployContracts() {
 
-	// Returns the chainId
-	chainId := utils.ChainID()
+// 	fromAddress, privateKey := signer.Wallet()
 
-	// Binds the connected signer to the transaction options
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
+// 	// Returns the nonce
+// 	nonce := utils.Nonce(fromAddress)
 
-	// If err does not equal nil (zero value) throw an error
-	if err != nil {
-		log.Fatalf("Failed to build the NewKeyedTransactorWithChainID %v", err)
-	}
+// 	// Returns the gasPrice
+// 	gasPrice := utils.GasPrice()
 
-	// Sets the nonce to send with a transaction
-	auth.Nonce = big.NewInt(int64(nonce))
+// 	// Returns the chainId
+// 	chainId := utils.ChainID()
 
-	// Sets the amount of test ETH to send with a transaction
-	auth.Value = big.NewInt(0)
+// 	// Binds the connected signer to the transaction options
+// 	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
 
-	// Sets the gasLimit for a transaction
-	auth.GasLimit = uint64(300000)
+// 	// If err does not equal nil (zero value) throw an error
+// 	if err != nil {
+// 		log.Fatalf("Failed to build the NewKeyedTransactorWithChainID %v", err)
+// 	}
 
-	// Sets the gas price for a transaction
-	auth.GasPrice = gasPrice
+// 	// Sets the nonce to send with a transaction
+// 	auth.Nonce = big.NewInt(int64(nonce))
 
-	tokenResp, _ := FetchContractData()
+// 	// Sets the amount of test ETH to send with a transaction
+// 	auth.Value = big.NewInt(0)
 
-	tokenBody, err := io.ReadAll(tokenResp.Body)
+// 	// Sets the gasLimit for a transaction
+// 	auth.GasLimit = uint64(300000)
 
-	if err != nil {
-		log.Fatalf("Failed to read the response body for the ./tokenContract endpoint %v", err)
-	}
+// 	// Sets the gas price for a transaction
+// 	auth.GasPrice = gasPrice
 
-	log.Println(string(tokenBody))
+// 	tokenResp, _ := FetchContractData()
 
-}
+// 	tokenBody, err := io.ReadAll(tokenResp.Body)
+
+// 	if err != nil {
+// 		log.Fatalf("Failed to read the response body for the ./tokenContract endpoint %v", err)
+// 	}
+
+// 	json.Unmarshal([]byte(string(tokenBody)), &ContractData)
+
+// 	address, _, contract, _ := bind.DeployContract(auth, ContractData.Abi, []byte(ContractData.Bytecode), client.ClientConnection())
+// 	fmt.Println(address)
+// 	fmt.Println(fromAddress)
+
+// token.Initialize(auth, "TEST", "TT")
+
+// name, _ := token.Name(&bind.CallOpts{})
+
+// fmt.Println(name)
+
+// fmt.Println(tx)
+// fmt.Println(bound)
+
+// }
