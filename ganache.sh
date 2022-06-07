@@ -1,1 +1,0 @@
-ganache-cli -m "burden fat abandon erupt one camp tired nominee use settle chronic nuclear"
