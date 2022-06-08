@@ -19,7 +19,10 @@ func StartApp() {
 
 	nonce := utils.Nonce(signerAddress)
 
+	gasPrice := utils.GasPrice()
+
 	fmt.Println(nonce)
+	fmt.Println(gasPrice)
 	fmt.Println(privateKey)
 
 }
