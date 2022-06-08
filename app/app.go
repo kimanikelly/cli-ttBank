@@ -21,8 +21,11 @@ func StartApp() {
 
 	gasPrice := utils.GasPrice()
 
+	chainId := utils.ChainID()
+
 	fmt.Println(nonce)
 	fmt.Println(gasPrice)
+	fmt.Println(chainId)
 	fmt.Println(privateKey)
 
 }
