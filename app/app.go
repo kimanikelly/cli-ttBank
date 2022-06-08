@@ -5,6 +5,7 @@ import (
 
 	"github.com/kimanikelly/cli-ttBank/contract"
 	"github.com/kimanikelly/cli-ttBank/signer"
+	"github.com/kimanikelly/cli-ttBank/utils"
 )
 
 func StartApp() {
@@ -16,6 +17,9 @@ func StartApp() {
 
 	signerAddress, privateKey := signer.Wallet()
 
-	fmt.Println(signerAddress, privateKey)
+	nonce := utils.Nonce(signerAddress)
+
+	fmt.Println(nonce)
+	fmt.Println(privateKey)
 
 }
