@@ -27,9 +27,9 @@ var TTBankAddress string
 
 func ContractInstance() *TTBank {
 
-	ttBankResp, _ := FetchContractData()
+	ttBankResp := FetchContractData().Body
 
-	ttBankBody, bodyErr := io.ReadAll(ttBankResp.Body)
+	ttBankBody, bodyErr := io.ReadAll(ttBankResp)
 
 	if bodyErr != nil {
 		log.Fatalf("Failed to read the response body %v", bodyErr)
@@ -55,6 +55,7 @@ func ContractInstance() *TTBank {
 	// Creates the TTBank.sol contract instance
 	ttBank, ttBankErr := NewTTBank(common.HexToAddress(TTBankAddress), client.ClientConnection())
 
+	// If ttBankErr does not return nil(zero value) throw an error
 	if ttBankErr != nil {
 		log.Fatalf("Failed to instantiate a Token contract: %v", ttBankErr)
 

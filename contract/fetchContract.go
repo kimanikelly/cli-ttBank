@@ -5,15 +5,7 @@ import (
 	"net/http"
 )
 
-func FetchContractData() (*http.Response, *http.Response) {
-
-	// GET request to access the ABI, Bytecode, and addresses of Token.sol
-	tokenResp, tokenErr := http.Get("https://kimanikelly-contractapi.herokuapp.com/tokenContract")
-
-	// If tokenErr does not equal nil(zero value) throw an err
-	if tokenErr != nil {
-		log.Fatalf("Failed to perform a GET request to the /tokenContract endpoint %v", tokenErr)
-	}
+func FetchContractData() *http.Response {
 
 	// GET request to access the ABI, Bytecode, and addresses of TTBank.sol
 	ttBankResp, ttBankErr := http.Get("https://kimanikelly-contractapi.herokuapp.com/tokenContract/ttBank")
@@ -24,5 +16,5 @@ func FetchContractData() (*http.Response, *http.Response) {
 	}
 
 	// Returns the response made to the /tokenContract and /ttBank endpoints
-	return tokenResp, ttBankResp
+	return ttBankResp
 }
